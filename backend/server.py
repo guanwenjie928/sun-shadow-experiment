@@ -18,8 +18,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
-from models import QuizSession, Group, Question, Answer
-from database import init_db, SessionLocal, gen_uuid
+from models import QuizSession, Group, Question, Answer, gen_uuid
+from database import init_db, SessionLocal
 
 # ─── 应用初始化 ────────────────────────────────────────────
 ROOT = Path(__file__).parent.parent
@@ -425,4 +425,4 @@ if STATIC_DIR.exists():
 # ─── 入口 ──────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=9005)
+    uvicorn.run(app, host="0.0.0.0", port=9006)

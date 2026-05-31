@@ -11,7 +11,7 @@ set -e
 PROJECT_UUID="ceb33133-7d4d-4bc7-aa6b-5fda9fbb8831"
 PROJECT_NAME="sun-shadow-experiment"
 DEPLOY_BASE="/data/${PROJECT_UUID}"
-BACKEND_PORT=9005
+BACKEND_PORT=9006
 
 # 检测当前脚本所在目录（项目根目录）
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
