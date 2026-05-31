@@ -1,0 +1,89 @@
+/* ─── 太阳与影子 · 全局样式 ─── */
+:root {
+  --primary: #f59e0b;
+  --primary-dark: #d97706;
+  --bg: #fffbeb;
+  --bg-card: #ffffff;
+  --text: #1c1917;
+  --text-secondary: #78716c;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --border: #e7e5e4;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ─── 导航栏 ─── */
+.navbar {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  position: sticky; top: 0; z-index: 100;
+}
+.navbar .logo { font-size: 1.5rem; font-weight: 700; }
+.navbar .subtitle { font-size: .85rem; opacity: .85; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: var(--radius-sm);
+  font-size: .95rem; font-weight: 600; font-family: var(--font);
+  cursor: pointer; border: none; transition: all .2s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-success { background: var(--success); color: white; }
+.btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
+
+/* ─── 卡片 ─── */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+/* ─── 首页特有 ─── */
+.hero {
+  text-align: center; padding: 60px 24px 40px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+}
+.hero h1 { font-size: 2.4rem; margin-bottom: 8px; }
+.hero .emoji { font-size: 4rem; display: block; margin-bottom: 12px; }
+.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 24px; }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; padding: 24px; max-width: 1000px; margin: 0 auto;
+}
+.grid-3 .card { text-align: center; cursor: pointer; transition: all .2s; }
+.grid-3 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.grid-3 .card .icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+.grid-3 .card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.grid-3 .card p { color: var(--text-secondary); font-size: .9rem; }
+
+/* ─── 响应式 ─── */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.6rem; }
+  .grid-3 { grid-template-columns: 1fr; padding: 12px; }
+}

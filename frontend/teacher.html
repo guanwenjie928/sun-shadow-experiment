@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师大屏 · 太阳与影子</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dashboard { max-width: 1400px; margin: 0 auto; padding: 16px; }
+    .dashboard-header {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+    }
+    .session-info {
+      font-size: .9rem; color: var(--text-secondary);
+      background: var(--bg-card); padding: 8px 16px;
+      border-radius: var(--radius-sm); border: 1px solid var(--border);
+    }
+    .connection-dot {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; margin-right: 4px;
+    }
+    .connection-dot.online { background: var(--success); }
+    .connection-dot.offline { background: var(--danger); }
+
+    /* 12 宫格 */
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .group-card {
+      background: var(--bg-card); border-radius: var(--radius);
+      padding: 18px; box-shadow: var(--shadow);
+      border: 2px solid var(--border); text-align: center;
+      transition: all .3s;
+    }
+    .group-card.has-answer {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    .group-card .group-num {
+      font-size: 2rem; font-weight: 700;
+      color: var(--primary); line-height: 1;
+    }
+    .group-card .group-status {
+      font-size: .8rem; margin-top: 4px;
+    }
+    .group-card .group-progress {
+      margin: 10px 0; height: 8px; background: var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .group-card .group-progress .bar {
+      height: 100%; background: linear-gradient(90deg, var(--success), #34d399);
+      border-radius: 4px; transition: width .4s;
+    }
+    .group-card .group-score {
+      font-size: 1.4rem; font-weight: 700; color: var(--success);
+    }
+
+    /* 排名榜 */
+    .leaderboard {
+      margin-top: 30px;
+      background: var(--bg-card); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .leaderboard h3 { margin-bottom: 16px; }
+    .leader-row {
+      display: flex; align-items: center; padding: 10px 0;
+      border-bottom: 1px solid var(--border); gap: 16px;
+    }
+    .leader-row .rank {
+      font-size: 1.5rem; font-weight: 700; width: 40px;
+    }
+    .leader-row .rank.gold { color: #f59e0b; }
+    .leader-row .rank.silver { color: #94a3b8; }
+    .leader-row .rank.bronze { color: #d97706; }
+    .leader-bar-wrap {
+      flex: 1; height: 24px; background: var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .leader-bar-wrap .bar {
+      height: 100%; border-radius: 12px;
+      background: linear-gradient(90deg, var(--primary), #fbbf24);
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 8px; font-size: .8rem; font-weight: 700;
+      color: white; transition: width .5s;
+    }
+
+    /* 题目详情展开 */
+    .detail-toggle { cursor: pointer; color: var(--primary); font-size: .85rem; }
+    .detail-panel {
+      display: none; margin-top: 12px; text-align: left;
+      font-size: .8rem; border-top: 1px solid var(--border); padding-top: 8px;
+    }
+    .detail-panel.show { display: block; }
+
+    /* 响应式：大屏 4 列，中等 3 列，小屏 2 列 */
+    @media (max-width: 1000px) { .group-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px)  { .group-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div>
+    <span class="logo">🖥️ 教师大屏</span>
+    <span class="subtitle"> | 太阳与影子 · 答题监控</span>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+    <span class="session-info" id="session-badge">未连接</span>
+    <span id="conn-status">
+      <span class="connection-dot offline" id="conn-dot"></span>
+      <span id="conn-text" style="font-size:.8rem;">离线</span>
+    </span>
+    <button class="btn" style="background:white;color:var(--primary);" onclick="createNewSession()">新建场次</button>
+    <button class="btn" id="btn-finish" style="background:var(--danger);color:white;" onclick="finishSession()">结束答题</button>
+    <a href="./" class="btn btn-outline" style="color:white;border-color:white;">← 返回</a>
+  </div>
+</nav>
+
+<div class="dashboard" id="dashboard">
+  <!-- 12 宫格 -->
+  <div class="group-grid" id="group-grid"></div>
+
+  <!-- 排名榜 -->
+  <div class="leaderboard" id="leaderboard">
+    <h3>🏆 实时排名</h3>
+    <div id="leader-list"><p style="color:var(--text-secondary);">等待答题开始...</p></div>
+  </div>
+</div>
+
+<script src="js/teacher.js"></script>
+</body>
+</html>

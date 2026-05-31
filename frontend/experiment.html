@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验 · 太阳与影子</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .unity-container {
+      max-width: 1024px; margin: 20px auto;
+      background: #1a1a2e; border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-lg);
+    }
+    .unity-container iframe {
+      width: 100%; height: 600px; border: none;
+    }
+    .experiment-tips {
+      max-width: 1024px; margin: 0 auto 40px; padding: 0 20px;
+    }
+    .experiment-tips .card { margin-bottom: 16px; }
+    .tip-list { list-style: none; }
+    .tip-list li { padding: 6px 0; }
+    .tip-list li::before { content: "💡 "; }
+    @media (max-width: 640px) {
+      .unity-container iframe { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div>
+    <span class="logo">🌞 太阳与影子</span>
+    <span class="subtitle"> | 互动实验</span>
+  </div>
+  <a href="./" class="btn btn-outline" style="color:white;border-color:white;">← 返回首页</a>
+</nav>
+
+<div class="unity-container">
+  <iframe id="unity-frame" src="Build/index.html" allowfullscreen></iframe>
+</div>
+
+<div class="experiment-tips">
+  <div class="card">
+    <h3>📋 实验操作指南</h3>
+    <ul class="tip-list">
+      <li><b>拖动底部滑块</b> — 改变时间（6:00 ~ 18:00），观察太阳位置和影子变化</li>
+      <li><b>点击快捷按钮</b> — 快速跳到早上/正午/下午/傍晚</li>
+      <li><b>切换季节</b> — 春夏秋冬，同一时间影子长短不同哦</li>
+      <li><b>观察地面标尺</b> — 读取影子长度（单位：米）</li>
+      <li><b>点击"自动演示"</b> — 让太阳自动走完一天</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🤔 带着问题去实验</h3>
+    <ol style="padding-left:20px;">
+      <li>早上和傍晚，影子有什么不同？</li>
+      <li>什么时候影子最短？为什么？</li>
+      <li>冬天和夏天同一时刻的影子哪个更长？</li>
+      <li>影子总是在太阳的哪个方向？</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+// 与 Unity WebGL 通信（可选：实验页可通过 postMessage 接收 Unity 数据）
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'unity-data') {
+    console.log('实验数据:', e.data);
+  }
+});
+</script>
+
+</body>
+</html>

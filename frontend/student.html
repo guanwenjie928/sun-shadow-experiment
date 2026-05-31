@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>学生答题 · 太阳与影子</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .quiz-container { max-width: 700px; margin: 20px auto; padding: 0 16px; }
+    .group-badge {
+      display: inline-block; background: var(--primary); color: white;
+      padding: 4px 16px; border-radius: 20px; font-weight: 700;
+      font-size: .95rem; margin-bottom: 16px;
+    }
+    .progress { display: flex; gap: 4px; margin: 16px 0; flex-wrap: wrap; }
+    .progress .dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--border); display: flex; align-items: center;
+      justify-content: center; font-size: .75rem; font-weight: 700;
+      transition: all .3s;
+    }
+    .progress .dot.done { background: var(--success); color: white; }
+    .progress .dot.current { background: var(--primary); color: white; transform: scale(1.2); }
+
+    .question-card { margin-bottom: 20px; }
+    .question-card h3 { font-size: 1.05rem; margin-bottom: 16px; line-height: 1.5; }
+    .question-card .q-num {
+      display: inline-block; background: #fef3c7; color: var(--primary-dark);
+      padding: 2px 10px; border-radius: 10px; font-size: .8rem;
+      margin-right: 8px;
+    }
+
+    .option { display: block; width: 100%; text-align: left;
+      padding: 14px 16px; margin-bottom: 8px;
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      background: white; font-size: 1rem; cursor: pointer; transition: all .15s;
+      font-family: var(--font);
+    }
+    .option:hover { border-color: var(--primary); }
+    .option.selected { border-color: var(--primary); background: #fef3c7; }
+    .option.selected::before { content: "✓ "; color: var(--primary); font-weight: 700; }
+
+    .fill-input {
+      width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 1rem; font-family: var(--font);
+      outline: none; transition: border-color .15s;
+    }
+    .fill-input:focus { border-color: var(--primary); }
+
+    .essay-input {
+      width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 1rem; font-family: var(--font);
+      outline: none; resize: vertical; min-height: 80px; transition: border-color .15s;
+    }
+    .essay-input:focus { border-color: var(--primary); }
+
+    .hint-box {
+      background: #fffbeb; border-left: 4px solid var(--warning);
+      padding: 12px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: .85rem; color: #92400e; margin-top: 12px;
+    }
+
+    .nav-btns { display: flex; gap: 12px; margin-top: 20px; }
+    .nav-btns .btn { flex: 1; justify-content: center; }
+
+    .result-card {
+      text-align: center; padding: 40px 20px;
+    }
+    .result-card .score {
+      font-size: 3rem; font-weight: 700; color: var(--primary);
+    }
+    .result-card .emoji { font-size: 4rem; display: block; }
+
+    .login-step { text-align: center; padding: 40px 20px; }
+    .login-step select, .login-step input {
+      padding: 12px 16px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 1rem;
+      font-family: var(--font); margin: 8px 0; width: 200px;
+      text-align: center;
+    }
+    .login-step .btn { margin-top: 16px; }
+
+    /* 平板适配 */
+    @media (max-width: 640px) {
+      .question-card h3 { font-size: .95rem; }
+      .option { padding: 12px; font-size: .9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div>
+    <span class="logo">📝 学生答题</span>
+    <span class="subtitle"> | 太阳与影子</span>
+  </div>
+  <a href="./" class="btn btn-outline" style="color:white;border-color:white;">← 返回</a>
+</nav>
+
+<div class="quiz-container" id="app">
+  <!-- 动态填充 -->
+</div>
+
+<script src="js/student.js"></script>
+</body>
+</html>

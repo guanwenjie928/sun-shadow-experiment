@@ -1,0 +1,59 @@
+# ─── Unity/Tuanjie 引擎生成目录（体积巨大，绝对不能提交）───
+[Tt]emp/
+[Ll]ibrary/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Rr]ecordings/
+
+# ─── Unity 元数据（可选，保留为空）───
+*.csproj
+*.sln
+*.unityproj
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ─── 操作系统 ───
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+.venv/
+venv/
+.env
+.env.local
+*.egg
+
+# ─── IDE ───
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── 运行时 ───
+*.log
+*.pid
+*.lock
+nohup.out
+
+# ─── 部署产物（通过 deploy.sh 或 CI 部署）───
+static/Build/
+static/TemplateData/

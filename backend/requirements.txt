@@ -1,0 +1,10 @@
+"""
+Sun-Shadow Experiment — 依赖清单
+FastAPI + SQLAlchemy + MySQL + WebSocket
+"""
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+sqlalchemy>=2.0.0
+pymysql>=1.1.0
+pydantic>=2.0.0
+websockets>=12.0
