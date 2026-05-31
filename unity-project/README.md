@@ -17,21 +17,26 @@
 5. 项目路径：任意（建议放在本仓库的 `unity-project/` 下）
 6. 点击创建
 
-## 步骤 2：导入免费素材（全部免费）
+## 步骤 2：素材已就绪（无需额外下载）
 
-### 2.1 Kenney Nature Pack Extended（CC0 树木/石头）
-- 下载地址：https://kenney.nl/assets/nature-pack-extended
-- 下载 `.zip`，在 Tuanjie 中：`Assets → Import Package → Custom Package` 导入
+### 2.1 Nature Pack Extended（CC0 · 188 个低面数模型）✅ 已下载
+- 位置：`Assets/NaturePack/`
+- 包含：树木、石头、草丛、花朵、灌木等 188 个 OBJ 模型
+- 附带 Unity Package：`Assets/NaturePack/Unity package/naturePack_unity.unitypackage`
+- 导入方式：在 Tuanjie 中双击 `.unitypackage` 文件即可导入（会生成带材质和碰撞体的 Prefab）
 
-### 2.2 Farland Skies - Low Poly（天空盒 + 日夜循环）
-- 打开 Tuanjie → `Window → Asset Store`
-- 搜索 `Farland Skies - Low Poly`（免费）
-- 点击 Download → Import
+### 2.2 ProceduralSky（程序化动态天空）✅ 已编写
+- 位置：`Assets/_Project/Scripts/ProceduralSky.cs`
+- 无需任何外部天空盒素材
+- 天空颜色自动随 SunController 的时间变化：
+  - 日出（橙色渐变）→ 上午（淡蓝）→ 正午（深蓝）→ 下午（淡蓝）→ 日落（橙红）
+- 自动控制雾色、环境光、相机背景色
 
-### 2.3 Simple Sky & Simple Town Lite（可选补充素材）
-- Asset Store 搜索 `Simple Sky` (Synty, 免费)
-- Asset Store 搜索 `Simple Town Lite` (Synty, 免费)
-- 作为操场场景元素的补充
+### 2.3 操场场景元素（用 Unity 基础几何体搭建）
+- 旗杆：Cylinder（高 5 米）
+- 地面：Plane（Scale 10×10）
+- 围栏：Cube 拉伸排列
+- 装饰：从 NaturePack 拖入树木和石头
 
 ## 步骤 3：导入项目脚本
 
@@ -89,13 +94,14 @@ Assets/
 2. Position = (0, 50, 0)
 3. 将 `SunController.cs` 脚本拖到 Sun 上
 
-### 4.6 天空
-- 从 Assets 中找到 Farland Skies 的 Prefab，拖入场景
-- 或者手动设置：`Window → Rendering → Lighting` → Environment → Skybox Material 设置为 Farland Skies 的材质
+### 4.6 天空（程序化动态天空）
+1. 创建空 GameObject `SkyManager`
+2. 将 `ProceduralSky.cs` 拖到 SkyManager 上
+3. `Sun Controller` 字段拖入 Sun GameObject
+4. `Scene Light` 字段拖入 Sun GameObject（即 Directional Light）
+5. 运行时天空会自动根据时间变色，无需手动设置天空盒
 
-### 4.7 场景装饰
-- 从 Kenney Nature Pack 拖入：几棵树、石头、栅栏
-- 放在旗杆周围作为操场场景
+### 4.7 场景装饰（使用 NaturePack 素材）
 
 ## 步骤 5：搭建 UI
 
@@ -145,6 +151,8 @@ Assets/
 | GameManager | Btn Morning/Noon/Afternoon/Evening | 对应 Button |
 | GameManager | Btn Auto Play | 自动演示 Button |
 | GameManager | Status Text | 新建 StatusText (TMPro) |
+| ProceduralSky | Sun Controller | Sun GameObject |
+| ProceduralSky | Scene Light | Sun GameObject |
 
 ## 步骤 6：WebGL 构建设置
 
